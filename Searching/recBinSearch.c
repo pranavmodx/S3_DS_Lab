@@ -23,7 +23,7 @@ int main()
 {
     int arr[] = {1, 4, 10, 15, 18, 19, 20, 25, 30, 31, 40};
     int n = sizeof(arr) / sizeof(arr[0]);
-    int meow = binSearch(arr, 0, n, 19);
-    printf("Element found at index %d \n", meow);
+    int idx = binSearch(arr, 0, n, 19);
+    printf("Element found at index %d \n", idx);
     return 0;
 }
