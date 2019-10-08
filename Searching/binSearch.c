@@ -28,7 +28,7 @@ int main()
 {
     int arr[] = {1, 4, 10, 15, 18, 19, 20, 25, 30, 31, 40, 100, 150};
     int n = sizeof(arr) / sizeof(arr[0]);
-    int meow = binSearch(arr, n, 31);
-    printf("Element found at index %d \n", meow);
+    int idx = binSearch(arr, n, 31);
+    printf("Element found at index %d \n", idx);
     return 0;
 }
