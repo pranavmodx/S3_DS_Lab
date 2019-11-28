@@ -1,3 +1,5 @@
+// Author - Lakshmi Sunil
+
 #include <stdio.h>
 
 int main()

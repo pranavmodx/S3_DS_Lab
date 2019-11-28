@@ -1,3 +1,5 @@
+// Author - Lakshmi Sunil
+
 #include <stdio.h>
 
 void merge(int a[],int first, int mid, int last)
