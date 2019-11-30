@@ -26,8 +26,8 @@ int main() {
     int ch = 1, op;
     int elem;
 
-    while (ch == 1) {
-        printf("Choose any :");
+    while (ch) {
+        printf("\nDeque using Linked List\n");
         printf("\n1. Insert front");
         printf("\n2. Insert last");
         printf("\n3. Delete front");

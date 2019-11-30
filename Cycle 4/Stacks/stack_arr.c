@@ -25,8 +25,8 @@ int main() {
     int ch = 1, op;
     int elem;
 
-    while (ch == 1) {
-        printf("Choose any :");
+    while (ch) {
+        printf("\nStack using Array\n");
         printf("\n1. Push");
         printf("\n2. Pop");
         printf("\n3. Peek / Display");

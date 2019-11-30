@@ -27,8 +27,8 @@ int main() {
     int ch = 1, op;
     int elem;
 
-    while (ch == 1) {
-        printf("Choose any :");
+    while (ch) {
+        printf("\nQueue using Array\n");
         printf("\n1. Enqueue");
         printf("\n2. Dequeue");
         printf("\n3. Exit\n");

@@ -4,25 +4,26 @@
 struct Node {
     int data;
     struct Node *next;
-} *front = NULL, *rear = NULL;
+};
 
 typedef struct Node Node;
 
+Node *front = NULL, *rear = NULL;
+
 void enqueue(int elem);
 int dequeue();
-
 void displayQueue(Node *p);
 
 int main() {
     int ch = 1, op;
     int elem;
 
-    while (ch == 1) {
-        printf("Choose any :");
+    while (ch) {
+        printf("\nCircular Queue using Linked List\n");
         printf("\n1. Enqueue");
         printf("\n2. Dequeue");
         printf("\n3. Display");
-        printf("\n4. Exit\n");
+        printf("\n3. Exit\n");
         
         scanf("%d", &op);
 
@@ -56,10 +57,13 @@ int main() {
 void enqueue(int elem) {
     Node *t = (Node*) malloc(sizeof(Node));
     t->data = elem;
-    t->next = NULL;
-    if (front == NULL && rear == NULL)
+
+    if (front == NULL || rear == NULL) {
+        t->next = t;
         front = rear = t;
+    }
     else {
+        t->next = front;
         rear->next = t;
         rear = t;
     }
@@ -69,15 +73,20 @@ int dequeue() {
     Node *t = front;
     int elem = t->data;
     front = front->next;
+    rear->next = front;
     free(t);
 
     return elem;
 }
 
 void displayQueue(Node *p) {
-    while (p != NULL) {
-        printf("%d ", p->data);
-        p = p->next;
+    if (p != NULL) {
+        do {
+            printf("%d ", p->data);
+            p = p->next;
+        } while (p != front);
     }
+    else 
+        printf("Empty queue");
     printf("\n");
 }
