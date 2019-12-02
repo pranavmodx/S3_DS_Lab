@@ -72,8 +72,10 @@ void enqueue(int elem) {
 int dequeue() {
     Node *t = front;
     int elem = t->data;
+    
     front = front->next;
     rear->next = front;
+
     free(t);
 
     return elem;

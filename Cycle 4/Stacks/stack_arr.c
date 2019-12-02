@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 struct Stack {
-    int top;
-    int capacity;
     int *arr;
+    int size;
+    int top;
 };
 
 typedef struct Stack Stack;
@@ -18,9 +18,9 @@ int peek(Stack *stack);
 
 int main() {
     Stack *stack = (Stack*) malloc(sizeof(Stack));
-    stack->capacity = 50;
+    stack->size = 50;
     stack->top = -1;
-    stack->arr = (int*) malloc(stack->capacity * sizeof(int));
+    stack->arr = (int*) malloc(stack->size * sizeof(int));
 
     int ch = 1, op;
     int elem;
@@ -62,7 +62,7 @@ int main() {
 
 
 int isFull(Stack *stack) {
-    return stack->top == stack->capacity - 1;
+    return stack->top == stack->size - 1;
 }
 
 int isEmpty(Stack *stack) {

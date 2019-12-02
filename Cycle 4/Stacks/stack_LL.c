@@ -77,6 +77,11 @@ int pop() {
 }
 
 void peek(Node *p) {
+    if (p == NULL) {
+        printf("Empty stack\n");
+        return;
+    }
+
     while (p != NULL) {
         printf("%d ", p->data);
         p = p->next;

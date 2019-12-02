@@ -2,10 +2,10 @@
 #include <stdlib.h>
 
 struct Queue {
+    int *arr;
+    int size;
     int front;
     int rear;
-    int capacity;
-    int *arr;
 };
 
 typedef struct Queue Queue;
@@ -19,8 +19,8 @@ int dequeue(Queue *queue);
 
 int main() {
     Queue *queue = (Queue*) malloc(sizeof(Queue));
-    queue->capacity = 50;
-    queue->arr = (int*) malloc(queue->capacity * sizeof(int));
+    queue->size = 50;
+    queue->arr = (int*) malloc(queue->size * sizeof(int));
     queue->front = -1;
     queue->rear = -1;
 
@@ -60,7 +60,7 @@ int main() {
 
 
 int isFull(Queue *queue) {
-    return queue->rear == queue->capacity - 1;
+    return queue->rear == queue->size - 1;
 }
 
 int isEmpty(Queue *queue) {

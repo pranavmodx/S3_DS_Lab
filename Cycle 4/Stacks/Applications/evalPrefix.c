@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 
 struct Node {
@@ -21,16 +22,18 @@ int isNumber(int num);
 int isOperator(char ch);
 
 // Main logic function
-int evalPostfix(char *exp);
+int evalPrefix(char *exp, int size);
 
 
 int main() {
-    char *postfixExp;
+    char *prefixExp;
 
-    printf("Enter an expression : ");
-    scanf("%s", postfixExp);
+    printf("Enter prefix expression : ");
+    scanf("%s", prefixExp);
 
-    printf("Evaluation of expression : %d \n", evalPostfix(postfixExp));
+    int size = strlen(prefixExp);
+
+    printf("Evaluation of expression : %d \n", evalPrefix(prefixExp, size));
 
     return 0;
 }
@@ -98,22 +101,22 @@ int isOperator(char ch) {
 
 int eval(int num1, int num2, char op) {
     switch(op) {
-        case '+': return num2 + num1;
-        case '-': return num2 - num1;
-        case '*': return num2 * num1;
-        case '/': return num2 / num1;
-        case '%': return num2 % num1;
-        case '^': return num2 ^ num1;
+        case '+': return num1 + num2;
+        case '-': return num1 - num2;
+        case '*': return num1 * num2;
+        case '/': return num1 / num2;
+        case '%': return num1 % num2;
+        case '^': return num1 ^ num2;
     }
     return -1;
 }
 
-int evalPostfix(char *exp) {
+int evalPrefix(char *exp, int size) {
     int num1, num2, res;
     char ch;
 
     int i;
-    for (i=0; exp[i] != '\0'; i++) {
+    for (i=size-1; i>=0; i--) {
         ch = exp[i];
 
         if (isNumber(atoi(&ch)) && !isOperator(ch))
