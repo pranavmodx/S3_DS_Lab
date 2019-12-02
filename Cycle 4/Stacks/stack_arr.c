@@ -9,6 +9,7 @@ struct Stack {
 
 typedef struct Stack Stack;
 
+
 int isFull(Stack *stack);
 int isEmpty(Stack *stack);
 
@@ -16,9 +17,13 @@ void push(Stack *stack, int elem);
 int pop(Stack *stack);
 int peek(Stack *stack);
 
+
 int main() {
     Stack *stack = (Stack*) malloc(sizeof(Stack));
-    stack->size = 50;
+
+    printf("Enter size of stack : ");
+    scanf("%d", &stack->size);
+
     stack->top = -1;
     stack->arr = (int*) malloc(stack->size * sizeof(int));
 

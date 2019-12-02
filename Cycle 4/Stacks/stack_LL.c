@@ -8,9 +8,11 @@ struct Node {
 
 typedef struct Node Node;
 
+
 void push(int elem);
 int pop();
 void peek(Node *p);
+
 
 int main() {
     int ch = 1, op;

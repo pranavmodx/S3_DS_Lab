@@ -10,16 +10,22 @@ struct Queue {
 
 typedef struct Queue Queue;
 
+
 int isFull(Queue *queue);
 int isEmpty(Queue *queue);
 
 void enqueue(Queue *queue, int elem);
 int dequeue(Queue *queue);
 
+void displayQueue(Queue *queue);
+
 
 int main() {
     Queue *queue = (Queue*) malloc(sizeof(Queue));
-    queue->size = 50;
+
+    printf("Enter size of queue : ");
+    scanf("%d", &queue->size);
+
     queue->arr = (int*) malloc(queue->size * sizeof(int));
     queue->front = -1;
     queue->rear = -1;
@@ -31,7 +37,8 @@ int main() {
         printf("\nQueue using Array\n");
         printf("\n1. Enqueue");
         printf("\n2. Dequeue");
-        printf("\n3. Exit\n");
+        printf("\n3. Display queue");
+        printf("\n4. Exit\n");
         
         scanf("%d", &op);
 
@@ -45,6 +52,9 @@ int main() {
                     dequeue(queue);
                     break;
             case 3:
+                    displayQueue(queue);
+                    break;
+            case 4:
                     exit(0);
                     break;
             default:
@@ -69,7 +79,7 @@ int isEmpty(Queue *queue) {
 
 void enqueue(Queue *queue, int elem) {
     if (isFull(queue)) {
-        printf("Queue overflow! \n");
+        printf("Queue overflow!\n");
         return;
     }
     if (isEmpty(queue)) {
@@ -82,8 +92,20 @@ void enqueue(Queue *queue, int elem) {
 
 int dequeue(Queue *queue) {
     if (isEmpty(queue)) {
-        printf("Queue underflow! \n");
+        printf("Queue underflow!\n");
         return -1;
     }
     return queue->arr[queue->front++];
+}
+
+void displayQueue(Queue *queue) {
+    if (queue->front == -1) {
+        printf("Queue underflow!\n");
+        return;
+    }
+
+    int i;
+    for (i=0; i<queue->rear; i++)
+        printf("%d ", queue->arr[i]);
+    printf("\n");
 }

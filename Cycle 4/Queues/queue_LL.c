@@ -8,10 +8,12 @@ struct Node {
 
 typedef struct Node Node;
 
+
 void enqueue(int elem);
 int dequeue();
 
 void displayQueue(Node *p);
+
 
 int main() {
     int ch = 1, op;

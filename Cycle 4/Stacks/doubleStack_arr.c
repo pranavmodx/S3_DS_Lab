@@ -23,7 +23,10 @@ int peek2(DStack *dStack);
 
 int main() {
     DStack *dStack = malloc(sizeof(DStack));
-    dStack->size = 6;
+
+    printf("Enter size of stack : ");
+    scanf("%d", &dStack->size);
+
     dStack->arr = malloc(dStack->size * sizeof(int));
     dStack->top1 = -1;
     dStack->top2 = dStack->size;

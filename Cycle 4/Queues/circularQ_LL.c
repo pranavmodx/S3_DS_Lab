@@ -4,15 +4,19 @@
 struct Node {
     int data;
     struct Node *next;
-};
+} *front = NULL, *rear = NULL;
 
 typedef struct Node Node;
 
-Node *front = NULL, *rear = NULL;
 
 void enqueue(int elem);
 int dequeue();
+
+int getFront();
+int getRear();
+
 void displayQueue(Node *p);
+
 
 int main() {
     int ch = 1, op;
@@ -22,8 +26,10 @@ int main() {
         printf("\nCircular Queue using Linked List\n");
         printf("\n1. Enqueue");
         printf("\n2. Dequeue");
-        printf("\n3. Display");
-        printf("\n3. Exit\n");
+        printf("\n3. Get front");
+        printf("\n4. Get rear");
+        printf("\n5. Display queue");
+        printf("\n6. Exit\n");
         
         scanf("%d", &op);
 
@@ -37,9 +43,15 @@ int main() {
                     dequeue();
                     break;
             case 3:
-                    displayQueue(front);
+                    printf("%d\n", getFront());
                     break;
             case 4:
+                    printf("%d\n", getRear());
+                    break;
+            case 5:
+                    displayQueue(front);
+                    break;
+            case 6:
                     exit(0);
                     break;
             default:
@@ -91,4 +103,20 @@ void displayQueue(Node *p) {
     else 
         printf("Empty queue");
     printf("\n");
+}
+
+int getFront() {
+    if (front == NULL) {
+        printf("Queue underflow!\n");
+        return -1;
+    }
+    return front->data;
+}
+
+int getRear() {
+    if (rear == NULL) {
+        printf("Queue underflow!\n");
+        return -1;
+    }
+    return rear->data;
 }
