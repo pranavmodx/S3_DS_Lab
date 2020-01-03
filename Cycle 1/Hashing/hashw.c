@@ -2,28 +2,28 @@
 #include<string.h>
 
 int main() {
-	const int tableSize = 26, 
-		    wordLength = 15, 
-			textLength = tableSize * wordLength;
+	const int tSize = 26, 
+		    wLen = 15, 
+			tLen = tSize * wLen;
 
-	char hashTable[tableSize][wordLength],
-		hashTable2[tableSize][wordLength],
-		text[textLength],
-		word[wordLength],
-		searchWord[wordLength];
+	char hashT[tSize][wLen],
+		hashT2[tSize][wLen],
+		text[tLen],
+		word[wLen],
+		sWord[wLen];
 
 	int i, j, k, 
 		key,
-		searchKey,
-		searchKey2,
-		searchCount,
-		searchCount2;
+		sKey,
+		sKey2,
+		sCount,
+		sCount2;
 
-	for (i=0; i<tableSize; i++)
-		strcpy(hashTable[i], "0");
+	for (i=0; i<tSize; i++)
+		strcpy(hashT[i], "0");
 
-	for (i=0; i<tableSize; i++)
-		strcpy(hashTable2[i], "0");
+	for (i=0; i<tSize; i++)
+		strcpy(hashT2[i], "0");
 
 	gets(text);
 
@@ -35,23 +35,23 @@ int main() {
 			word[j++] = text[i++];
 		word[j] = '\0';
 
-		key = word[0] % tableSize;
+		key = word[0] % tSize;
 	
-		if (strcmp(hashTable[key], "0") == 0) {
-			strcpy(hashTable[key], word);
+		if (strcmp(hashT[key], "0") == 0) {
+			strcpy(hashT[key], word);
 		}
 
 		else {
-			while (strcmp(hashTable[key], "0") != 0)
-				key = (key + 1) % tableSize;
+			while (strcmp(hashT[key], "0") != 0)
+				key = (key + 1) % tSize;
 
-			strcpy(hashTable[key], word);
+			strcpy(hashT[key], word);
 		}	
 	}
 
 	printf("The hash table after linear probing is : \n");
-	for (i=0; i<tableSize; i++)
-		printf("%s \n", hashTable[i]);
+	for (i=0; i<tSize; i++)
+		printf("%s \n", hashT[i]);
 
 	// Quadratic Probing Hashing
 	for(i=0; text[i] != '\0'; i++) {
@@ -62,65 +62,65 @@ int main() {
 			word[j++] = text[i++];
 		word[j] = '\0';
 
-		key = word[0] % tableSize;
+		key = word[0] % tSize;
 	
-		if (strcmp(hashTable2[key], "0") == 0)
-			strcpy(hashTable2[key], word);
+		if (strcmp(hashT2[key], "0") == 0)
+			strcpy(hashT2[key], word);
 
 		else {
-			while (strcmp(hashTable2[key], "0") != 0 && k <= tableSize) {
-				key = (key + (k * k)) % tableSize;
+			while (strcmp(hashT2[key], "0") != 0 && k <= tSize) {
+				key = (key + (k * k)) % tSize;
                 k++;
             }
 
-			if (k > tableSize) {
+			if (k > tSize) {
 				printf("All slots are either filled or there aren't \
 				 		any ideal slots for the element to be filled.");
 				break;
 			}
 
-			strcpy(hashTable2[key], word);
+			strcpy(hashT2[key], word);
 		}	
 	}
 
 	printf("The hash table after quadratic probing is : \n");
-	for (i=0; i<tableSize; i++)
-		printf("%s \n", hashTable2[i]);	
+	for (i=0; i<tSize; i++)
+		printf("%s \n", hashT2[i]);	
 
 	printf("Enter a word to search : ");
-	scanf("%s", searchWord);
+	scanf("%s", sWord);
 
-	searchKey = searchWord[0] % tableSize;
-	searchKey2 = searchWord[0] % tableSize;
+	sKey = sWord[0] % tSize;
+	sKey2 = sWord[0] % tSize;
 
-	if (hashTable[searchKey] == searchWord) {
-		searchCount = 1;
-		searchCount2 = 1;
+	if (hashT[sKey] == sWord) {
+		sCount = 1;
+		sCount2 = 1;
 	}
 
 	else {
-		searchCount = 1;
-		searchCount2 = 1;
+		sCount = 1;
+		sCount2 = 1;
 		k = 1;
 
 		// Linear Probing Searching
-		while (strcmp(hashTable[searchKey], searchWord) != 0 && searchCount <= tableSize) {
-			searchKey = (searchKey + 1) % tableSize;
-			searchCount++;
+		while (strcmp(hashT[sKey], sWord) != 0 && sCount <= tSize) {
+			sKey = (sKey + 1) % tSize;
+			sCount++;
 		}
 
 		// Quadratic Probing Searching
-		while (strcmp(hashTable2[searchKey2], searchWord) != 0 && searchCount2 <= tableSize) {
-			searchKey2 = (searchKey2 + (k * k)) % tableSize;
-			searchCount2++;
+		while (strcmp(hashT2[sKey2], sWord) != 0 && sCount2 <= tSize) {
+			sKey2 = (sKey2 + (k * k)) % tSize;
+			sCount2++;
 			k++;
 		}
 	}
 
-	if (searchCount <= tableSize) {
+	if (sCount <= tSize) {
 		printf("Linear Probing \n");
-		printf("The word is at index : %d \n", searchKey);
-		printf("Number of key comparisons done : %d \n", searchCount);
+		printf("The word is at index : %d \n", sKey);
+		printf("Number of key comparisons done : %d \n", sCount);
 	}
 	else {
 		printf("Search unsuccessful \n");
@@ -128,10 +128,10 @@ int main() {
 
 	printf("\n");
 
-	if (searchCount2 <= tableSize && k <= tableSize) {
+	if (sCount2 <= tSize && k <= tSize) {
 		printf("Quadratic Probing \n");
-		printf("The word is at index : %d \n", searchKey2);
-		printf("Number of key comparisons done : %d \n", searchCount2);
+		printf("The word is at index : %d \n", sKey2);
+		printf("Number of key comparisons done : %d \n", sCount2);
 	}
 	else {
 		printf("Search unsuccessful \n");
